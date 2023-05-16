@@ -55,10 +55,10 @@ public class PermissionUtil {
 
     public static String[] getReadAndWriteStoragePermissions(boolean internal) {
         if (internal) {
-            return new String[] { Manifest.permission.READ_EXTERNAL_STORAGE };
+            return new String[] { Manifest.permission.READ_MEDIA_IMAGE };
         } else {
             return new String[] {
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGE
             };
         }
     }
