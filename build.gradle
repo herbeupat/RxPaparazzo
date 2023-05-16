@@ -6,7 +6,7 @@ buildscript {
         rxpaparazzo_group = 'com.github.miguelbcr'
         rxpaparazzo_version = '0.8.0-LGC'
         min_sdk_version = 21
-        sdk_version = 31
+        sdk_version = 33
     }
 
     repositories {
