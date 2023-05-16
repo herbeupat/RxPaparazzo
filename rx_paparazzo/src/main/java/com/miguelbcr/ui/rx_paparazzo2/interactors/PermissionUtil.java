@@ -48,18 +48,26 @@ public class PermissionUtil {
     }
 
     public static void revokeFileReadWritePermissions(TargetUi targetUi, Uri uri) {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-            targetUi.getContext().revokeUriPermission(uri, READ_WRITE_PERMISSIONS);
-        }
+        targetUi.getContext().revokeUriPermission(uri, READ_WRITE_PERMISSIONS);
     }
 
     public static String[] getReadAndWriteStoragePermissions(boolean internal) {
-        if (internal) {
-            return new String[] { Manifest.permission.READ_MEDIA_IMAGE };
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (internal) {
+                    return new String[] { Manifest.permission.READ_MEDIA_IMAGES };
+            } else {
+                return new String[] {
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGES
+                };
+            }
         } else {
-            return new String[] {
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_MEDIA_IMAGE
-            };
+            if (internal) {
+                return new String[] { Manifest.permission.READ_EXTERNAL_STORAGE };
+            } else {
+                return new String[] {
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE
+                };
+            }
         }
     }
 }
